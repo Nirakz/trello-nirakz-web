@@ -1,4 +1,4 @@
-# ReactJS + Hook + Redux - Building an app like Trello from scartch.
+# ReactJS + Hook + Redux - Building an app like Trello
 
 # Requirments
 
