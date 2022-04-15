@@ -8,7 +8,7 @@ import BoardContent from 'components/BoardContent/BoardContent'
 
 function App() {
   return (
-    <div className="trello-nirakz-master">
+    <div className="trello-dori-master">
       <AppBar />
       <BoardBar />
       <BoardContent />
