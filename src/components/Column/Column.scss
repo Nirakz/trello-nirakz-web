@@ -5,7 +5,7 @@ $column-footer-height: 46px;
 
 
 
-$column-height: calc(#{$board-content-height} -#{$gap * 2});
+$column-height: calc(#{$board-content-height} - #{$gap * 2});
 
     .column{
         flex: 0 0 auto;
@@ -70,6 +70,7 @@ $column-height: calc(#{$board-content-height} -#{$gap * 2});
         footer{
             padding-left: $gap;
             height: $column-footer-height;
+            min-height: $gap;
             line-height: $column-footer-height;
             font-size: 14px;
             border-bottom-left-radius: $column-border-radius;
@@ -83,10 +84,11 @@ $column-height: calc(#{$board-content-height} -#{$gap * 2});
                 }
             }
         }
-        .card-column {
+        .card-list{
             margin: 0;
-            max-height: calc(#{$column-height}- #{$column-header-height} - #{$column-footer-height});
+            max-height: calc(#{$column-height} - #{$column-header-height} - #{$column-footer-height});
             overflow-y: auto;
+
             &::-webkit-scrollbar {
                 -webkit-appearance: none;
             }
@@ -95,26 +97,33 @@ $column-height: calc(#{$board-content-height} -#{$gap * 2});
             }
             &::-webkit-scrollbar-thumb {
                 background-color: darken($column-bg-color, 15);
-                border-right:  5px solid $column-bg-color;
-             }
-
-             .card-ghost {
+                border-right: 5px solid $column-bg-color;
+            }
+            
+            .card-ghost {
                 transition: transform 0.18s ease;
                 transform: rotateZ(5deg);
                 font-weight: bold;
-              }
+            }
               
-              .card-ghost-drop{
+            .card-ghost-drop{
                 transition: transform 0.18s ease-in-out;
                 transform: rotateZ(0deg);
                 font-weight: bold;
-              }
-              .card-drop-preview {
+            }
+            .card-drop-preview {
                 background-color: rgba(150, 150, 200, 0.1);
                 border: 1px dashed #abc;
                 margin: 5px;
-              }
+            }
 
+        }
+        .add-new-card{
+            .textarea-enter-new-card{
+                min-height: 54px;
+                max-height: 162px;
+            }
+            
         }
 
     }

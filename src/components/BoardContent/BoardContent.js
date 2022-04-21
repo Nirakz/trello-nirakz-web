@@ -13,8 +13,9 @@ function BoardContent() {
   const [board, setBoard] = useState({})
   const [columns, setColumns] = useState([])
   const [openNewColumnFrom, setOpenNewColumnFrom] = useState(false)
+  const toggleOpenNewColumnFrom = () => {setOpenNewColumnFrom(!openNewColumnFrom)}
 
-  const newColumnIputRef = useRef(null)
+  const newColumnInputRef = useRef(null)
 
   const [newColumnTitle, setNewColumnTitle] = useState('')
   const onNewColumnTitleChange = (e) => setNewColumnTitle(e.target.value)
@@ -27,10 +28,11 @@ function BoardContent() {
       setColumns (mapOrder(boardFromDB.columns, boardFromDB.columnOrder, 'id'))
     }
   }, [])
+
   useEffect(() => {
-    if (newColumnIputRef && newColumnIputRef.current) {
-      newColumnIputRef.current.focus()
-      newColumnIputRef.current.select()
+    if (newColumnInputRef && newColumnInputRef.current) {
+      newColumnInputRef.current.focus()
+      newColumnInputRef.current.select()
     }
   }, [openNewColumnFrom])
 
@@ -63,13 +65,9 @@ function BoardContent() {
     }
   }
 
-  const toggleOpenNewColumnFrom = () => {
-    setOpenNewColumnFrom(!openNewColumnFrom)
-  }
-
   const addNewColumn = () => {
     if (!newColumnTitle) {
-      newColumnIputRef.current.focus()
+      newColumnInputRef.current.focus()
       return
     }
 
@@ -137,7 +135,11 @@ function BoardContent() {
       >
         {columns.map((column, index) => (
           <Draggable key={index}>
-            <Column column={column} onCardDrop={onCardDrop} onUpdateColumn={onUpdateColumn} />
+            <Column
+              column={column}
+              onCardDrop={onCardDrop}
+              onUpdateColumn={onUpdateColumn}
+            />
           </Draggable>
         ))}
       </Container>
@@ -156,13 +158,13 @@ function BoardContent() {
               <Form.Control
                 size="sm" type="text" placeholder="Enter column..."
                 className='input-enter-new-column'
-                ref={newColumnIputRef}
+                ref={newColumnInputRef}
                 value={newColumnTitle}
                 onChange={onNewColumnTitleChange}
                 onKeyDown={event => (event.key === 'Enter' && addNewColumn())}
               />
               <Button variant="success" size='sm' onClick={addNewColumn}>Add Column</Button>{' '}
-              <span className='cancle-new-column' onClick={toggleOpenNewColumnFrom}>
+              <span className='cancle-icon' onClick={toggleOpenNewColumnFrom}>
                 <i className='fa fa-trash-o icon'></i>
               </span>
             </Col>
