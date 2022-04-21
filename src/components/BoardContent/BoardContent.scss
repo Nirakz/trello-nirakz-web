@@ -50,22 +50,7 @@
          margin-left: $gap;
          border-radius: $column-border-radius;
          input.input-enter-new-column{
-            margin: 5px 0;
-            &:focus{
-                border-color: $input-border-color;
-            }
-         }
-         span.cancle-new-column{
-             margin-left: $gap;
-             cursor: pointer;
-             i{
-                 font-size: 18px;
-                 &:hover{
-                     color: darken($color: #000000, $amount: 10);
-                 }
-             }
+            margin: 5px 0
          }
      }
-     
-
 }
