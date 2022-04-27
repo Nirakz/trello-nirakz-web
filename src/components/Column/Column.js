@@ -11,7 +11,7 @@ import { saveContentAfterEnter, selectAllInLineText } from 'utilities/contentEdi
 
 function Column(props) {
   const { column, onCardDrop, onUpdateColumn } = props
-  const cards = mapOrder(column.cards, column.cardOrder, 'id')
+  const cards = mapOrder(column.cards, column.cardOrder, '_id')
 
   const [showConfirmModal, setShowConfirmModal] = useState(false)
   const toggleShowConfirmModal = () => setShowConfirmModal(!showConfirmModal)
@@ -67,7 +67,7 @@ function Column(props) {
     const newCardToAdd = {
       id: Math.random().toString(36).substr(2, 5),
       boardId: column.boardId,
-      columnId: column.id,
+      columnId: column._id,
       title: newCardTitle.trim(),
       cover: null
     }
@@ -75,7 +75,7 @@ function Column(props) {
     let newColumn = cloneDeep(column)
 
     newColumn.cards.push(newCardToAdd)
-    newColumn.cardOrder.push(newCardToAdd.id)
+    newColumn.cardOrder.push(newCardToAdd._id)
 
     onUpdateColumn(newColumn)
     setNewCardTitle('')
@@ -116,7 +116,7 @@ function Column(props) {
       <div className='card-list'>
         <Container
           groupName='dori-columns'
-          onDrop={dropResult => onCardDrop(column.id, dropResult)}
+          onDrop={dropResult => onCardDrop(column._id, dropResult)}
           getChildPayload={index => cards[index]}
           dragClass='card-ghost'
           dropClass='card-ghost-drop'
