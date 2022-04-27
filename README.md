@@ -2,8 +2,8 @@
 
 # Requirments
 
-* nodejs >= v17.6.0
-* npm >= v8.5.1
+* nodejs >= v14.7.0
+* npm >= v6.4.7
 * yarn >= v1.22.17
 
 Clone project and run test.
